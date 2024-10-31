@@ -1,3 +1,5 @@
+package apiTests;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pojo.ColorPojoFullData;
@@ -6,23 +8,23 @@ import pojo.UserPojoFullData;
 import java.io.File;
 import java.util.List;
 
-import static Specification.ReqresApiSpec.getRequestSpecification;
-import static Specification.ReqresApiSpec.responseSpecification;
-import static Specification.ReqresApiSpec.setSpecification;
+import static config.ApiSpecification.getRequestSpecification;
+import static config.ApiSpecification.responseSpecification;
+import static config.ApiSpecification.setSpecification;
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static ru.testingisgood.contstants.ReqresInApi.REQRES_BASE_URL;
 import static ru.testingisgood.contstants.ReqresInApi.GET_API_UNKNOWN;
 import static ru.testingisgood.contstants.ReqresInApi.GET_API_USERS;
 import static ru.testingisgood.contstants.ReqresInApi.POST_API_USERS;
 
 public class UsersDataTest {
 
-    public static final String NEW_USER_JSON_PATH = "src/test/resources/NewUser.json";
+    public static final String NEW_USER_JSON_PATH = "src/test/resources/newUser.json";
 
     @Test
     public void getListOfUsersWithCode200(){
-        setSpecification(getRequestSpecification(), responseSpecification(200));
+        setSpecification(getRequestSpecification(REQRES_BASE_URL), responseSpecification(200));
         given()
                 .when()
                 .get(GET_API_USERS)
@@ -31,9 +33,8 @@ public class UsersDataTest {
 
     @Test
     public void postNewUserWithCode201(){
+        setSpecification(getRequestSpecification(REQRES_BASE_URL), responseSpecification(201));
         given()
-                .baseUri("https://reqres.in")
-                .contentType(JSON)
                 .body(new File(NEW_USER_JSON_PATH))
                 .when()
                 .post(POST_API_USERS)
@@ -42,7 +43,7 @@ public class UsersDataTest {
 
     @Test
     public void checkSingleUserName(){
-        setSpecification(getRequestSpecification(), responseSpecification(200));
+        setSpecification(getRequestSpecification(REQRES_BASE_URL), responseSpecification(200));
         given()
                 .when()
                 .get(GET_API_USERS)
@@ -52,7 +53,7 @@ public class UsersDataTest {
 
     @Test
     public void checkUserData(){
-        setSpecification(getRequestSpecification(), responseSpecification(200));
+        setSpecification(getRequestSpecification(REQRES_BASE_URL), responseSpecification(200));
         List<UserPojoFullData> users = given()
                 .when()
                 .get(GET_API_USERS)
@@ -64,7 +65,7 @@ public class UsersDataTest {
 
     @Test
     public void checkColorData(){
-        setSpecification(getRequestSpecification(), responseSpecification(200));
+        setSpecification(getRequestSpecification(REQRES_BASE_URL), responseSpecification(200));
         List<ColorPojoFullData> colors = given()
                 .when()
                 .get(GET_API_UNKNOWN)

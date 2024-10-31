@@ -1,6 +1,6 @@
 package ru.testingisgood.contstants;
 
-public enum ElementsVisibility {
+public enum ElementsVisibilityParameters {
     VISIBLE,
     HIDDEN
 }
