@@ -1,11 +1,11 @@
 package uiTests;
 
 import com.codeborne.selenide.Selenide;
-import config.BaseUiTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pageObject.SignUpPage;
+import projectsConfiguration.uiConf.BaseUiTest;
 
 import static ru.testingisgood.contstants.ElementsVisibilityParameters.HIDDEN;
 import static ru.testingisgood.contstants.ElementsVisibilityParameters.VISIBLE;

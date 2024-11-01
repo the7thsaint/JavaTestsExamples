@@ -1,12 +1,11 @@
 package uiTests;
 
 import com.codeborne.selenide.Selenide;
-import config.BaseUiTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pageObject.SignInPage;
-
+import projectsConfiguration.uiConf.BaseUiTest;
 
 import static ru.testingisgood.contstants.ElementsVisibilityParameters.VISIBLE;
 import static ru.testingisgood.contstants.GitHubPlatformPageLinks.SIGN_IN_PAGE;
