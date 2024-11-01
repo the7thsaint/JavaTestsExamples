@@ -1,4 +1,4 @@
-package config;
+package projectsConfiguration.apiConf;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -10,9 +10,10 @@ import static io.restassured.http.ContentType.JSON;
 
 public class ApiSpecification {
 
-    public static RequestSpecification getRequestSpecification(String baseUrl) {
+    public static RequestSpecification getRequestSpecification(String baseUrl, String basePath) {
         return new RequestSpecBuilder()
                 .setBaseUri(baseUrl)
+                .setBasePath(basePath)
                 .setAccept(JSON)
                 .setContentType(JSON)
                 .build();
