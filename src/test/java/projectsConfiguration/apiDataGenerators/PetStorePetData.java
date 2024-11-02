@@ -1,16 +1,15 @@
 package projectsConfiguration.apiDataGenerators;
 
-import pojo.test.Category;
-import pojo.test.NewPetRequest;
-import pojo.test.TagsItem;
+import pojo.petStorePostPetRequest.Category;
+import pojo.petStorePostPetRequest.NewPetRequest;
+import pojo.petStorePostPetRequest.TagsItem;
 
 import java.util.Arrays;
 
 
+public class PetStorePetData {
 
-public class PetData {
-
-    public static NewPetRequest getPetData(){
+    public static NewPetRequest getPetData() {
         return NewPetRequest
                 .builder()
                 .id(123)

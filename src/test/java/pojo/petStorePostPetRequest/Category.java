@@ -1,4 +1,4 @@
-package pojo.test;
+package pojo.petStorePostPetRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

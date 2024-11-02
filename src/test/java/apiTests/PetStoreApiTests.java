@@ -2,6 +2,7 @@ package apiTests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import projectsConfiguration.apiDataGenerators.PetStorePetData;
 import projectsConfiguration.apiDataGenerators.PetStoreUsersData;
 
 import java.io.File;
@@ -54,5 +55,17 @@ public class PetStoreApiTests {
                 .when()
                 .get()
                 .then();
+    }
+
+    //POST запрос с использованием POJO класса и билдера
+    @Test
+    @DisplayName("Создание нового животного с кодов ответа 200")
+    public void checkCreateNewPetWithCode200() {
+        setSpecification(getRequestSpecification(PET_STORE_BASE_URL, POST_CREATE_NEW_PET),
+                responseSpecification(200));
+        given()
+                .body(PetStorePetData.getPetData())
+                .when().post()
+                .then().assertThat().body("id", equalTo(123));
     }
 }
