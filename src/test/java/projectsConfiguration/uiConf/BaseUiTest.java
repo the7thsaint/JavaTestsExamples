@@ -6,6 +6,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.Integer.parseInt;
+import static ru.testingisgood.Tools.PropertiesWorker.readProperties;
 
 public class BaseUiTest {
 
@@ -15,14 +18,14 @@ public class BaseUiTest {
     public static void setUp() {
         chromeOptions = new ChromeOptions();
         //chromeOptions.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage"); //uncomment this for disable browser visibility
-        Configuration.baseUrl = "https://github.com";
-        Configuration.pageLoadTimeout = 60000;
-        Configuration.timeout = 60000;
+        Configuration.baseUrl = readProperties().getProperty("baseUrl");
+        Configuration.pageLoadTimeout = parseInt(readProperties().getProperty("timeout"));
+        Configuration.timeout = parseInt(readProperties().getProperty("timeout"));
         Configuration.browserCapabilities = chromeOptions;
-        Configuration.screenshots = false;
-        Configuration.savePageSource = false;
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "2100x1080";
+        Configuration.screenshots = parseBoolean(readProperties().getProperty("enableScreenshots"));
+        Configuration.savePageSource = parseBoolean(readProperties().getProperty("enableSavePageSource"));
+        Configuration.browser = readProperties().getProperty("browser");
+        Configuration.browserSize = readProperties().getProperty("browserSize");
     }
 
     @AfterAll
